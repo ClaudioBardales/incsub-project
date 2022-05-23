@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Forms from "./components/forms"
+import Dummy from "./components/dummyHeading";
+import Styled from "styled-components";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+        <Forms />
+        <Dummy />
+    </Container>
   );
 }
+
+const Container = Styled.div`
+background-color: #276efa;
+min-height: 100vh;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+`
 
 export default App;
