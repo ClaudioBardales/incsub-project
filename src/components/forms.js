@@ -1,20 +1,27 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useState } from 'react';
+import { FaEye } from "react-icons/fa";
 
 const forms = () => {
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  }
   return (
     <Container>
         <Wrapper>
             <h1>Let's set up your account</h1>
             <p>Already have a account? <span>Sign in</span></p>
             <form>
-                <input type="text" name='name' />
-                <input type="email" name='email'/>
+                <input type="text" name='name' placeholder='Your Name'/>
+                <input type="email" name='email'placeholder='Email Address'/>
                 <select>
                     <option value="">I would describe my user type as</option>
                     <option value="">Developer</option>
                 </select> 
-                <input type="password" />
+                <input type={passwordShown ? "text" : "password"} placeholder='Password'/>
+                <PasswordIcon onClick={togglePassword} />
                 <p>Minimum 8 Characters</p>
                 <button type="submit">Next</button>
                 <p>By clicking the "Next" button, you agree to creating a free, and to <span>Terms of Service</span> and <span>Privacy Policy</span></p>
@@ -54,7 +61,12 @@ form{
     line-height: 2;
   }
   input,select{
-    padding: 0.5rem;
+    width: 100%;
+    height: 2.5rem;
+    font-size: 18px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 7px 7px;
   }
   button{
     padding: 1rem;
@@ -73,5 +85,11 @@ span{
 }
 
 `
+
+ const PasswordIcon = styled(FaEye)`
+   position: absolute;
+   top: 508px;
+   left: 770px;
+ `
 
 export default forms
