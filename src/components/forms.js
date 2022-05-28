@@ -5,6 +5,7 @@ import { FaEye } from "react-icons/fa";
 
 const forms = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [disabled, setDisabled] = useState();
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   }
@@ -14,16 +15,16 @@ const forms = () => {
             <h1>Let's set up your account</h1>
             <p>Already have a account? <span>Sign in</span></p>
             <form>
-                <input type="text" name='name' placeholder='Your Name'/>
-                <input type="email" name='email'placeholder='Email Address'/>
+                <input onChange={(e) => setDisabled(e.target.value)} type="text" name='name' placeholder='Your Name'/>
+                <input onChange={(e) => setDisabled(e.target.value)}type="email" name='email'placeholder='Email Address'/>
                 <select>
                     <option value="">I would describe my user type as</option>
-                    <option value="">Developer</option>
+                    <option value="Developer">Developer</option>
                 </select> 
-                <input type={passwordShown ? "text" : "password"} placeholder='Password'/>
+                <input  onChange={(e) => setDisabled(e.target.value)} type={passwordShown ? "text" : "password"} placeholder='Password'/>
                 <PasswordIcon onClick={togglePassword} />
                 <p>Minimum 8 Characters</p>
-                <button type="submit">Next</button>
+                <button disabled={!disabled} type="submit">Next</button>
                 <p>By clicking the "Next" button, you agree to creating a free, and to <span>Terms of Service</span> and <span>Privacy Policy</span></p>
             </form>
         </Wrapper>
@@ -46,18 +47,20 @@ gap: 1.5rem;
 flex-direction: column;
 margin: auto;
 h1,p{
-  width: 60%;
+  width: 100%;
+  font-weight: bold;
   margin: auto;
 }
 form{
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  width: 60%;
+  width: 100%;
   margin: auto;
   p{
     width: 100%;
     margin: auto;
+    font-size: 11px;
     line-height: 2;
   }
   input,select{
@@ -88,8 +91,8 @@ span{
 
  const PasswordIcon = styled(FaEye)`
    position: absolute;
-   top: 508px;
-   left: 770px;
+   top: 534px;
+   left: 802px;
  `
 
 export default forms
