@@ -5,26 +5,48 @@ import { FaEye } from "react-icons/fa";
 
 const forms = () => {
   const [passwordShown, setPasswordShown] = useState(false);
-  const [disabled, setDisabled] = useState();
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handlePasswordChange = (e) =>{
+    setPassword(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   }
+
+
   return (
     <Container>
         <Wrapper>
             <h1>Let's set up your account</h1>
             <p>Already have a account? <span>Sign in</span></p>
-            <form>
-                <input onChange={(e) => setDisabled(e.target.value)} type="text" name='name' placeholder='Your Name'/>
-                <input onChange={(e) => setDisabled(e.target.value)}type="email" name='email'placeholder='Email Address'/>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name='name' onChange={handleNameChange}  value={name}placeholder='Your Name'/>
+                <input type="email" name='email' onChange={handleEmailChange} value={email}  placeholder='Email Address'/>
                 <select>
                     <option value="">I would describe my user type as</option>
                     <option value="Developer">Developer</option>
                 </select> 
-                <input  onChange={(e) => setDisabled(e.target.value)} type={passwordShown ? "text" : "password"} placeholder='Password'/>
+                <input type={passwordShown ? "text" : "password"} onChange={handlePasswordChange} value={password} placeholder='Password'/>
                 <PasswordIcon onClick={togglePassword} />
                 <p>Minimum 8 Characters</p>
-                <button disabled={!disabled} type="submit">Next</button>
+                <button type="submit" disabled={!email || !password}>Next</button>
                 <p>By clicking the "Next" button, you agree to creating a free, and to <span>Terms of Service</span> and <span>Privacy Policy</span></p>
             </form>
         </Wrapper>
@@ -80,6 +102,11 @@ form{
     letter-spacing: 1px;
     background-color: #276efa;
     cursor: pointer;
+    &:disabled{
+      background-color: #ededed;
+      color: #aaaaaa;
+      cursor: not-allowed;
+    }
   }
 }
 span{
