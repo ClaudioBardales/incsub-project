@@ -8,6 +8,7 @@ const forms = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [select, setSelectValue] = useState("")
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -19,6 +20,10 @@ const forms = () => {
 
   const handlePasswordChange = (e) =>{
     setPassword(e.target.value)
+  }
+
+  const handleSelectChange = (e) =>{
+    setSelectValue(e.target.value);
   }
 
   const handleSubmit = (e) => {
@@ -39,14 +44,14 @@ const forms = () => {
             <form onSubmit={handleSubmit}>
                 <input type="text" name='name' onChange={handleNameChange}  value={name}placeholder='Your Name'/>
                 <input type="email" name='email' onChange={handleEmailChange} value={email}  placeholder='Email Address'/>
-                <select>
+                <select onChange={handleSelectChange} value={select}>
                     <option value="">I would describe my user type as</option>
                     <option value="Developer">Developer</option>
                 </select> 
                 <input type={passwordShown ? "text" : "password"} onChange={handlePasswordChange} value={password} placeholder='Password'/>
                 <PasswordIcon onClick={togglePassword} />
                 <p>Minimum 8 Characters</p>
-                <button type="submit" disabled={!email || !password}>Next</button>
+                <button type="submit" disabled={!email || !password || !select}>Next</button>
                 <p>By clicking the "Next" button, you agree to creating a free, and to <span>Terms of Service</span> and <span>Privacy Policy</span></p>
             </form>
         </Wrapper>
