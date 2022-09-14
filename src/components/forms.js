@@ -60,13 +60,15 @@ const forms = () => {
             <option value="">I would describe my user type as</option>
             <option value="Developer">Developer</option>
           </select>
-          <input
-            type={passwordShown ? 'text' : 'password'}
-            onChange={handlePasswordChange}
-            value={password}
-            placeholder="Password"
-          />
-          <PasswordIcon onClick={togglePassword} />
+          <InputWrapper>
+            <input
+              type={passwordShown ? 'text' : 'password'}
+              onChange={handlePasswordChange}
+              value={password}
+              placeholder="Password"
+            />
+            <PasswordIcon onClick={togglePassword} />
+          </InputWrapper>
           <p>Minimum 8 Characters</p>
           <button type="submit" disabled={!email || !password || !select}>
             Next
@@ -117,11 +119,11 @@ const Wrapper = styled.div`
     select {
       position: relative;
       width: 100%;
-      height: 2.5rem;
+      height: 2.8rem;
       font-size: 18px;
       border: 1px solid lightgray;
       border-radius: 4px;
-      padding: 7px 7px;
+      padding: 8px 8px;
     }
     button {
       padding: 1rem;
@@ -145,10 +147,15 @@ const Wrapper = styled.div`
   }
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+`;
+
 const PasswordIcon = styled(FaEye)`
   position: absolute;
-  top: 454px;
-  left: 595px;
 `;
 
 export default forms;
